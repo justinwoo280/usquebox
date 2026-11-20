@@ -17,10 +17,10 @@ Android client for [usque](https://github.com/justinwoo280/usque) — a Cloudfla
 
 ### Prerequisites
 
-- Go 1.25+
+- Go 1.26.10 (also used by preview and release CI)
 - JDK 21
 - Android SDK (API 35, NDK 28.1)
-- gomobile (`go install golang.org/x/mobile/cmd/gomobile@latest`)
+- gomobile and gobind (run `go install golang.org/x/mobile/cmd/gomobile golang.org/x/mobile/cmd/gobind` from the sibling `usque` checkout to use its pinned module version)
 
 ### One-command build
 

@@ -19,6 +19,7 @@ jobs:
       JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
       ANDROID_HOME: ${{ github.workspace }}/android-sdk
       GOPATH: ${{ github.workspace }}/go
+      GOTOOLCHAIN: local
     steps:
       - name: Checkout usquebox
         uses: actions/checkout@v4
@@ -33,7 +34,8 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.26'
+          go-version: '1.26.10'
+          cache-dependency-path: ../usque/go.sum
 
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -48,9 +50,9 @@ jobs:
         run: sdkmanager "ndk;28.1.13356709"
 
       - name: Install gomobile
+        working-directory: ../usque
         run: |
-          go install golang.org/x/mobile/cmd/gomobile@latest
-          go install golang.org/x/mobile/cmd/gobind@latest
+          go install golang.org/x/mobile/cmd/gomobile golang.org/x/mobile/cmd/gobind
           gomobile init
 
       - name: Prepare signing (required for release)
