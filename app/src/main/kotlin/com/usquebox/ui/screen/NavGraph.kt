@@ -8,10 +8,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.usquebox.R
 import com.usquebox.service.TunnelState
 import com.usquebox.viewmodel.TunnelViewModel
 
@@ -42,7 +44,7 @@ fun NavGraph(
                     FloatingActionButton(
                         onClick = { navController.navigate(Routes.SETTINGS) }
                     ) {
-                        Icon(Icons.Default.Settings, contentDescription = "Settings")
+                        Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.settings))
                     }
                 }
             ) { innerPadding ->

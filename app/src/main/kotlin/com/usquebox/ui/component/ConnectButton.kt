@@ -16,7 +16,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.usquebox.R
 import com.usquebox.service.TunnelState
 import com.usquebox.ui.theme.ConnectedGreen
 import com.usquebox.ui.theme.ErrorRed
@@ -60,7 +62,7 @@ fun ConnectButton(
     ) {
         Icon(
             imageVector = Icons.Default.PowerSettingsNew,
-            contentDescription = if (isActive) "Disconnect" else "Connect",
+            contentDescription = stringResource(if (isActive) R.string.disconnect else R.string.connect),
             modifier = Modifier.size(56.dp)
         )
     }

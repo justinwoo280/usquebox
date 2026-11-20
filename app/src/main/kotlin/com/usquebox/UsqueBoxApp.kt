@@ -3,11 +3,17 @@ package com.usquebox
 import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.res.Configuration
 import android.os.Build
 
 class UsqueBoxApp : Application() {
     override fun onCreate() {
         super.onCreate()
+        createNotificationChannel()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
         createNotificationChannel()
     }
 

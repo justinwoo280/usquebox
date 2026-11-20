@@ -1,0 +1,127 @@
+<resources>
+    <string name="notification_channel_name">VPN 隧道</string>
+    <string name="notification_title">UsqueBox VPN</string>
+    <string name="notification_connected_rates">隧道已连接 · ↑ %1$s  ↓ %2$s</string>
+    <string name="notification_connecting">正在连接…</string>
+    <string name="notification_reconnecting">正在重连…</string>
+    <string name="notification_disconnected">已断开</string>
+    <string name="notification_error">隧道出错</string>
+    <string name="state_stopped">未连接</string>
+    <string name="state_connecting">正在连接</string>
+    <string name="state_connected">已连接</string>
+    <string name="state_reconnecting">正在重连</string>
+    <string name="connect">连接</string>
+    <string name="disconnect">断开</string>
+    <string name="save">保存</string>
+    <string name="back">返回</string>
+    <string name="refresh">刷新</string>
+    <string name="no_config">尚未设置配置</string>
+    <string name="traffic_sent">已发送</string>
+    <string name="traffic_recv">已接收</string>
+    <string name="uptime">运行时长</string>
+    <string name="uptime_unavailable">—</string>
+
+    <string name="settings">设置</string>
+    <string name="clear_draft">清空草稿</string>
+    <string name="account">WARP 账户</string>
+    <string name="device_name">设备名称（可选）</string>
+    <string name="device_jwt">Zero Trust JWT（可选）</string>
+    <string name="register">注册新账户</string>
+    <string name="registering">正在注册…</string>
+    <string name="error_registration">无法注册 WARP 账户。请检查网络和令牌后重试。</string>
+    <string name="import_config">导入或查看 JSON 配置</string>
+    <string name="hide_config_json">隐藏 JSON 配置</string>
+    <string name="config_json">JSON 配置</string>
+    <string name="paste_json">粘贴 usque register 生成的 config.json</string>
+    <string name="config_contains_credentials">此 JSON 包含凭据，请勿分享。</string>
+    <string name="paste">粘贴</string>
+    <string name="parse_config">加载 JSON</string>
+    <string name="parse_before_save">请先加载修改后的 JSON，再保存。</string>
+
+    <string name="tun_interface">VPN 接口</string>
+    <string name="tun_family_help">对使用 VPN 的应用，已禁用的 IP 协议族会被阻止。此设置不会改变连接 WARP 时使用的 IP 协议族。</string>
+    <string name="tun_enable_ipv4">在 VPN 内启用 IPv4</string>
+    <string name="tun_enable_ipv6">在 VPN 内启用 IPv6</string>
+    <string name="tun_mtu">本机 TUN MTU（字节）</string>
+    <string name="tun_mtu_help">此值与 WARP 路径 MTU 独立。填 0 或留空使用默认值。</string>
+    <string name="tun_dns">DNS 服务器</string>
+    <string name="tun_dns_help">填写 IPv4 或 IPv6 地址，以逗号或换行分隔。留空使用默认服务器。</string>
+
+    <string name="connection">WARP 连接</string>
+    <string name="connection_port">端点端口</string>
+    <string name="connection_sni">TLS 服务器名称（SNI）</string>
+    <string name="connection_sni_help">留空使用默认 WARP 服务器名称。</string>
+    <string name="connection_ipv6">通过 IPv6 连接 WARP</string>
+    <string name="connection_http2">使用 HTTP/2 而非 QUIC</string>
+    <string name="show_endpoints">编辑端点地址</string>
+    <string name="hide_endpoints">隐藏端点地址</string>
+    <string name="endpoint_h3_ipv4">QUIC 端点（IPv4）</string>
+    <string name="endpoint_h3_ipv6">QUIC 端点（IPv6）</string>
+    <string name="endpoint_h2_ipv4">HTTP/2 端点（IPv4）</string>
+    <string name="endpoint_h2_ipv6">HTTP/2 端点（IPv6）</string>
+
+    <string name="protocol">拥塞控制</string>
+    <string name="congestion">算法</string>
+    <string name="bbr_profile">BBR 配置档</string>
+    <string name="bbr_conservative">保守</string>
+    <string name="bbr_standard">标准</string>
+    <string name="bbr_aggressive">激进</string>
+    <string name="brutal_rate">Brutal 速率（字节/秒）</string>
+
+    <string name="noise_settings">噪声包</string>
+    <string name="connection_noise">连接后发送噪声包</string>
+    <string name="connection_pre_noise">QUIC 握手前发送 UDP 噪声包</string>
+    <string name="noise_count">发包数量</string>
+    <string name="noise_min_size">最小包长（字节）</string>
+    <string name="noise_max_size">最大包长（字节）</string>
+    <string name="noise_delay_min">最小间隔</string>
+    <string name="noise_delay_max">最大间隔</string>
+
+    <string name="advanced">高级</string>
+    <string name="keepalive">保活间隔</string>
+    <string name="reconnect_delay">重连等待时间</string>
+    <string name="duration_help">例如 50ms、1s 或 2m。</string>
+    <string name="initial_packet_size">QUIC 初始包长（字节）</string>
+    <string name="initial_packet_size_help">填 0 自动探测路径 MTU；填 1200–1452 固定外层 QUIC 包长。</string>
+    <string name="pmtu_target">隧道 MTU 探测目标</string>
+    <string name="pmtu_target_help">填写隧道内可达的 IP，留空自动选择，或填 off 关闭回显探测。</string>
+    <string name="insecure">跳过服务器公钥验证</string>
+    <string name="insecure_warning">此选项会降低连接安全性，仅建议在排查问题时启用。</string>
+
+    <string name="per_app_proxy">应用分流</string>
+    <string name="app_rules">应用规则</string>
+    <string name="app_rules_help">选择哪些应用使用 VPN。</string>
+    <string name="app_mode_global">全局</string>
+    <string name="app_mode_bypass">绕过</string>
+    <string name="app_mode_proxy_only">仅代理所选</string>
+    <string name="app_mode_global_help">其他应用均使用 VPN。</string>
+    <string name="app_mode_bypass_help">所选应用绕过 VPN。</string>
+    <string name="app_mode_proxy_only_help">仅所选应用使用 VPN。</string>
+    <string name="app_search">搜索应用</string>
+    <string name="app_show_system">系统应用</string>
+    <string name="app_system_badge">系统</string>
+    <string name="app_selection_summary">已选 %1$d 个 · %2$s</string>
+    <plurals name="app_count">
+        <item quantity="other">%d 个应用</item>
+    </plurals>
+
+    <string name="error_config_json">JSON 配置格式无效。</string>
+    <string name="error_config_account">配置缺少 WARP 账户密钥。</string>
+    <string name="error_config_inbound">Android 仅支持 TUN 入站配置。</string>
+    <string name="error_config_port">请输入 1 到 65535 的端口，或填 0 使用默认端口。</string>
+    <string name="error_config_mtu">请输入 1280 到 65535 的 TUN MTU，或填 0 使用默认值。</string>
+    <string name="error_config_dns">请输入 DNS 服务器的 IP 地址，而不是主机名或网址。</string>
+    <string name="error_config_initial_size">QUIC 初始包长须为 0 或 1200–1452 字节。</string>
+    <string name="error_config_pmtu_target">探测目标须是已启用协议族的 IP 地址，也可留空或填写 off。</string>
+    <string name="error_config_endpoint">请检查所选传输协议和 IP 协议族对应的 WARP 端点地址。</string>
+    <string name="error_config_ip_family">请至少启用一个 WARP 账户已分配地址的 VPN 协议族。</string>
+    <string name="error_config_congestion">请选择支持的拥塞控制算法和配置档。</string>
+    <string name="error_config_brutal_rate">请输入大于 0 的 Brutal 速率（字节/秒）。</string>
+    <string name="error_config_noise">请检查噪声包数量和包长范围。</string>
+    <string name="error_config_duration">请输入有效的时长，例如 250ms 或 30s。</string>
+    <string name="error_vpn_interface">无法建立 VPN 接口。</string>
+    <string name="error_vpn_protect">无法让 WARP 套接字绕过 VPN 路由。</string>
+    <string name="error_vpn_socket">无法创建 WARP UDP 套接字。</string>
+    <string name="error_vpn_start">无法启动隧道引擎。</string>
+    <string name="error_vpn_no_apps">在仅代理模式下，请至少选择一个已安装的应用。</string>
+</resources>

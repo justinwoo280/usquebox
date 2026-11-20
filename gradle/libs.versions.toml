@@ -24,6 +24,8 @@ androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "l
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 androidx-security-crypto = { group = "androidx.security", name = "security-crypto", version.ref = "security-crypto" }
+junit = { group = "junit", name = "junit", version = "4.13.2" }
+json = { group = "org.json", name = "json", version = "20240303" } # JVM parser for local Android unit tests
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

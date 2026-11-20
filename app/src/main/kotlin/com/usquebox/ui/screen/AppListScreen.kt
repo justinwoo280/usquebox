@@ -49,8 +49,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import com.usquebox.R
 import com.usquebox.data.AppInfo
 import com.usquebox.data.AppManager
 import com.usquebox.data.ProxyMode
@@ -116,15 +119,15 @@ fun AppListScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Per-App Proxy") },
+                title = { Text(stringResource(R.string.per_app_proxy)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.back))
                     }
                 },
                 actions = {
                     IconButton(onClick = { refreshKey++ }) {
-                        Icon(Icons.Default.Refresh, contentDescription = "Refresh")
+                        Icon(Icons.Default.Refresh, contentDescription = stringResource(R.string.refresh))
                     }
                 }
             )
@@ -140,13 +143,13 @@ fun AppListScreen(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                ModeChip("Global", localMode == ProxyMode.GLOBAL) {
+                ModeChip(stringResource(R.string.app_mode_global), localMode == ProxyMode.GLOBAL) {
                     localMode = ProxyMode.GLOBAL
                 }
-                ModeChip("Bypass", localMode == ProxyMode.BYPASS) {
+                ModeChip(stringResource(R.string.app_mode_bypass), localMode == ProxyMode.BYPASS) {
                     localMode = ProxyMode.BYPASS
                 }
-                ModeChip("Proxy Only", localMode == ProxyMode.PROXY_ONLY) {
+                ModeChip(stringResource(R.string.app_mode_proxy_only), localMode == ProxyMode.PROXY_ONLY) {
                     localMode = ProxyMode.PROXY_ONLY
                 }
             }
@@ -154,11 +157,11 @@ fun AppListScreen(
             Spacer(Modifier.height(4.dp))
 
             Text(
-                text = when (localMode) {
-                    ProxyMode.GLOBAL -> "All traffic goes through VPN"
-                    ProxyMode.BYPASS -> "Selected apps bypass VPN"
-                    ProxyMode.PROXY_ONLY -> "Only selected apps use VPN"
-                },
+                text = stringResource(when (localMode) {
+                    ProxyMode.GLOBAL -> R.string.app_mode_global_help
+                    ProxyMode.BYPASS -> R.string.app_mode_bypass_help
+                    ProxyMode.PROXY_ONLY -> R.string.app_mode_proxy_only_help
+                }),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -170,7 +173,7 @@ fun AppListScreen(
                     value = searchQuery,
                     onValueChange = { searchQuery = it },
                     modifier = Modifier.weight(1f),
-                    placeholder = { Text("Search apps") },
+                    placeholder = { Text(stringResource(R.string.app_search)) },
                     leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                     singleLine = true
                 )
@@ -178,14 +181,18 @@ fun AppListScreen(
                 FilterChip(
                     selected = showSystem,
                     onClick = { showSystem = !showSystem },
-                    label = { Text("System", style = MaterialTheme.typography.labelSmall) }
+                    label = { Text(stringResource(R.string.app_show_system), style = MaterialTheme.typography.labelSmall) }
                 )
             }
 
             Spacer(Modifier.height(4.dp))
 
             Text(
-                "${localSelected.size} selected · ${filtered.size} apps",
+                stringResource(
+                    R.string.app_selection_summary,
+                    localSelected.size,
+                    pluralStringResource(R.plurals.app_count, filtered.size, filtered.size)
+                ),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -217,7 +224,7 @@ fun AppListScreen(
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Save")
+                Text(stringResource(R.string.save))
             }
 
             Spacer(Modifier.height(8.dp))
@@ -255,7 +262,7 @@ private fun AppRow(app: AppInfo, checked: Boolean, onToggle: () -> Unit) {
                     Text(app.label, style = MaterialTheme.typography.bodyMedium)
                     if (app.isSystem) {
                         Spacer(Modifier.width(6.dp))
-                        Badge { Text("SYS", style = MaterialTheme.typography.labelSmall) }
+                        Badge { Text(stringResource(R.string.app_system_badge), style = MaterialTheme.typography.labelSmall) }
                     }
                 }
                 Text(

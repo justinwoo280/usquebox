@@ -1,5 +1,6 @@
 package com.usquebox.ui.screen
 
+import android.text.format.DateUtils
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
@@ -24,6 +25,9 @@ import com.usquebox.ui.component.TrafficStats
 import com.usquebox.ui.theme.ConnectedGreen
 import com.usquebox.ui.theme.ErrorRed
 import com.usquebox.ui.theme.ReconnectingAmber
+import mobile.Mobile
+import org.json.JSONObject
+import kotlin.time.Duration
 
 @Composable
 fun HomeScreen(
@@ -50,7 +54,7 @@ fun HomeScreen(
         is TunnelState.Connecting -> stringResource(R.string.state_connecting)
         is TunnelState.Connected -> stringResource(R.string.state_connected)
         is TunnelState.Reconnecting -> stringResource(R.string.state_reconnecting)
-        is TunnelState.Error -> "${stringResource(R.string.state_error)}: ${state.message}"
+        is TunnelState.Error -> stringResource(state.message)
     }
 
     val (sent, recv) = when (state) {
@@ -67,7 +71,7 @@ fun HomeScreen(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "UsqueBox",
+            text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.primary
         )
@@ -93,16 +97,16 @@ fun HomeScreen(
             TrafficStats(
                 bytesSent = sent,
                 bytesRecv = recv,
-                uptime = mobile.Mobile.getStatus().let { json ->
-                    Regex("\"uptime\":\"([^\"]*)\"").find(json)?.groupValues?.getOrNull(1) ?: ""
-                }
+                uptime = runCatching { JSONObject(Mobile.getStatus()).optString("uptime") }
+                    .getOrNull()?.let { Duration.parseOrNull(it) }?.inWholeSeconds
+                    ?.let { DateUtils.formatElapsedTime(it) }.orEmpty()
             )
         }
 
-        if (state is TunnelState.Error) {
+        if (state is TunnelState.Error && !state.detail.isNullOrBlank()) {
             Spacer(Modifier.height(16.dp))
             Text(
-                text = state.message,
+                text = state.detail,
                 style = MaterialTheme.typography.bodySmall,
                 color = ErrorRed,
                 modifier = Modifier

@@ -51,11 +51,7 @@ class TunnelViewModel(app: Application) : AndroidViewModel(app) {
         val intent = Intent(getApplication(), UsqueVpnService::class.java).apply {
             action = UsqueVpnService.ACTION_DISCONNECT
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            getApplication<Application>().startForegroundService(intent)
-        } else {
-            getApplication<Application>().startService(intent)
-        }
+        getApplication<Application>().startService(intent)
     }
 
     private fun startService() {

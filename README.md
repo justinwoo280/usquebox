@@ -9,6 +9,8 @@ Android client for [usque](https://github.com/justinwoo280/usque) — a Cloudfla
 - **Per-app proxy** — Global / Bypass / Proxy-Only modes
 - **Configurable** — congestion control (BBR/Brutal/Reno), noise injection, keepalive, etc.
 - **IPv4/IPv6 toggle** — disabled stacks are kernel black-holed (no leak)
+- **Configuration editor** — import full or legacy flat usque JSON, configure local TUN MTU and DNS independently of QUIC and tunnel PMTU settings, and edit WARP endpoints. Saving preserves unedited JSON keys.
+- **English and Simplified Chinese** — follows the device language; on Android 13+ the app language can also be chosen in system settings.
 - **V1+V2+V3 APK signing** for release builds
 
 ## Build
@@ -38,6 +40,21 @@ This will:
 ./build.sh        # Compile AAR via gomobile
 ./gradlew assembleDebug   # Or assembleRelease with signing
 ```
+
+To test a locally modified or not-yet-pushed core in the sibling `../usque`
+checkout, run `./build.sh` directly (without fetching or checking out
+`usque.ref`), followed by `./gradlew testDebugUnitTest assembleDebug`. The PMTU
+echo-target setting requires a core with CONNECT-IP echo probing support.
+
+### Configuration editor
+
+Use **Load JSON** to populate the form before editing. Imports that are not TUN
+configurations are rejected. Android-specific settings (app rules) stay in the
+app, and desktop-only JSON keys stay intact without being applied by Android.
+The VPN uses the saved settings on the next connection. The TUN IPv4/IPv6
+switches affect applications in the VPN; **Reach WARP over IPv6** controls
+the independent outer connection. DNS addresses for a disabled family are
+retained in the JSON but not advertised to Android while that family is off.
 
 APK builds compress native libraries by default, which substantially reduces
 the distributable size of the Go runtime. To build with page-aligned,
