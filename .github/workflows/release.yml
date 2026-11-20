@@ -16,8 +16,6 @@ jobs:
     name: Release APK
     runs-on: ubuntu-latest
     env:
-      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
-      ANDROID_HOME: ${{ github.workspace }}/android-sdk
       GOPATH: ${{ github.workspace }}/go
       GOTOOLCHAIN: local
     steps:
@@ -45,9 +43,12 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: 'platform-tools platforms;android-35 build-tools;35.0.0'
+          log-accepted-android-sdk-licenses: 'false'
 
       - name: Install NDK
-        run: sdkmanager "ndk;28.1.13356709"
+        run: sdkmanager --sdk_root="$ANDROID_HOME" "ndk;28.1.13356709"
 
       - name: Install gomobile
         working-directory: ../usque
